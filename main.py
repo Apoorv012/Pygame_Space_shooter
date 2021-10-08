@@ -1,5 +1,5 @@
 import pygame
-import os
+# import os
 
 pygame.font.init()
 pygame.mixer.init()
@@ -14,14 +14,14 @@ RED = (255, 0, 0)
 YELLOW = (255, 255, 0)
 
 BORDER = pygame.Rect((WIDTH-10)/2, 0, 10, HEIGHT)
-
-HEALTH_FONT = pygame.font.SysFont("comicsans", 40)
-WINNER_FONT = pygame.font.SysFont("algerian", 120)
+ 
+HEALTH_FONT = pygame.font.Font("C:\Windows\Fonts\comic.ttf", 30)
+WINNER_FONT = pygame.font.Font("C:\Windows\Fonts\ALGER.ttf", 100)
 
 # BULLET_FIRE_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Gun+Silencer.mp3'))
-BULLET_FIRE_SOUND = pygame.mixer.Sound('Assets\Gun+Silencer.mp3')
+BULLET_FIRE_SOUND = pygame.mixer.Sound('.\Assets\Gun+Silencer.mp3')
 # BULLET_HIT_SOUND = pygame.mixer.Sound(os.path.join('Assets', 'Grenade+1.mp3')) 
-BULLET_HIT_SOUND = pygame.mixer.Sound('Assets\Grenade+1.mp3')
+BULLET_HIT_SOUND = pygame.mixer.Sound('.\Assets\Grenade+1.mp3')
 
 FPS = 60
 
@@ -35,15 +35,15 @@ YELLOW_HIT = pygame.USEREVENT + 1
 RED_HIT = pygame.USEREVENT + 2
 
 # YELLOW_SPACESHIP_IMAGE = pygame.image.load(os.path.join('Assets', 'spaceship_yellow.png'))
-YELLOW_SPACESHIP_IMAGE = pygame.image.load('Assets\spaceship_yellow.png')
+YELLOW_SPACESHIP_IMAGE = pygame.image.load('.\Assets\spaceship_yellow.png')
 YELLOW_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(YELLOW_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 90)
 
 # RED_SPACESHIP_IMAGE = pygame.image.load(os.path.join('Assets', 'spaceship_red.png'))
-RED_SPACESHIP_IMAGE = pygame.image.load('Assets\spaceship_red.png')
+RED_SPACESHIP_IMAGE = pygame.image.load('.\Assets\spaceship_red.png')
 RED_SPACESHIP = pygame.transform.rotate(pygame.transform.scale(RED_SPACESHIP_IMAGE, (SPACESHIP_WIDTH, SPACESHIP_HEIGHT)), 270)
 
 # SPACE = pygame.transform.scale(pygame.image.load(os.path.join('Assets', 'space.png')), (WIDTH, HEIGHT))
-SPACE = pygame.transform.scale(pygame.image.load('Assets\space.png'), (WIDTH, HEIGHT))  
+SPACE = pygame.transform.scale(pygame.image.load('.\Assets\space.png'), (WIDTH, HEIGHT))  
 
 def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_health):
     
@@ -53,8 +53,8 @@ def draw_window(yellow, red, yellow_bullets, red_bullets, yellow_health, red_hea
 
     yellow_health_text = HEALTH_FONT.render("Health: " + str(yellow_health), 1, WHITE)
     red_health_text = HEALTH_FONT.render("Health: " + str(red_health), 1, WHITE)
-    WIN.blit(yellow_health_text, (10, 10))
-    WIN.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 10))
+    WIN.blit(yellow_health_text, (10, 0))
+    WIN.blit(red_health_text, (WIDTH - red_health_text.get_width() - 10, 0))
 
     WIN.blit(YELLOW_SPACESHIP, (yellow.x, yellow.y))
     WIN.blit(RED_SPACESHIP, (red.x, red.y))
@@ -134,6 +134,7 @@ def main():
             if event.type == pygame.QUIT:
                 run = False
                 pygame.quit()
+                exit(0)
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_LSHIFT and len(yellow_bullets) < MAX_BULLETS:
